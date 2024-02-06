@@ -1,25 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor.Callbacks;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    public float speed = 5f;
+    public Rigidbody player;
 
-    // Start is called before the first frame update
-    void Start()
+    public float move = 5000f;
+    void FixedUpdate()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        Vector3 movement = new Vector3(horizontalInput, 0.0f, verticalInput);
-
-        GetComponent<Rigidbody>().velocity = movement * speed;
+        if (Input.GetKey("d"))
+        {
+            player.AddForce(move * Time.deltaTime,0,0);
+        }
+        if (Input.GetKey("a"))
+        {
+            player.AddForce(-move * Time.deltaTime,0,0);
+        }
+        if (Input.GetKey("w"))
+        {
+            player.AddForce(0,0, move * Time.deltaTime);
+        }
+        if (Input.GetKey("s"))
+        {
+            player.AddForce(0,0, -move * Time.deltaTime);
+        }
     }
 }
