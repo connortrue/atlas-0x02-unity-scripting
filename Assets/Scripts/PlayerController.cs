@@ -3,10 +3,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody player;
-    public Rigidbody coin;
 
     public float move = 5000f;
     public int score = 0;
+    public int health = 5;
+
     void FixedUpdate()
     {
         if (Input.GetKey("d"))
@@ -34,6 +35,11 @@ public class PlayerController : MonoBehaviour
             score+=100;
             Debug.Log("Score: " + score);
             Destroy(other.gameObject);
+        }
+        if (other.CompareTag("Trap"))
+        {
+            health--;
+            Debug.Log("Health: " + health);
         }
     }
 }
