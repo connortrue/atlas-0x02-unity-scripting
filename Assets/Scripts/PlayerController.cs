@@ -1,3 +1,4 @@
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -7,6 +8,16 @@ public class PlayerController : MonoBehaviour
     public float move = 5000f;
     public int score = 0;
     public int health = 5;
+
+    void Update()
+    {
+        if (health == 0)
+        {
+            health = 5;
+            score = 0;
+            SceneManager.LoadScene("maze");
+        }
+    }
 
     void FixedUpdate()
     {
